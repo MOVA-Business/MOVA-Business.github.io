@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Backpack - Sports Bag Co.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="Backpack_style.css">
+</head>
+<body>
+    <!-- Consistent Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Sports Bag Co." class="logo-img">
+                </a>
+            </div>
+            <div class="main-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="store.html">Store</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Backpack Product Page -->
+    <main class="product-page">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product Image -->
+                <div class="product-image">
+                    <img src="Images/Back/Backpack-white.jpg" alt="Premium Backpack" class="main-image" id="backpackImage">
+                    <div class="price-tag">£79.99</div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="product-details">
+                    <h1>Premium Backpack</h1>
+                    <p class="product-description">
+                        Ergonomic backpack with intelligent compartmentalization for athletes who carry tech and gear. Weather-resistant and airport-friendly.
+                    </p>
+
+                    <!-- Color Selection -->
+                    <div class="color-selection">
+                        <h3>Choose Color:</h3>
+                        <div class="color-options">
+                            <div class="color-option">
+                                <input type="radio" id="backpack-white" name="backpack-color" value="white" checked>
+                                <label for="backpack-white" class="color-swatch white"></label>
+                                <span>White</span>
+                            </div>
+                            <div class="color-option">
+                                <input type="radio" id="backpack-black" name="backpack-color" value="black">
+                                <label for="backpack-black" class="color-swatch black"></label>
+                                <span>Black</span>
+                            </div>
+                            <div class="color-option">
+                                <input type="radio" id="backpack-gold" name="backpack-color" value="gold">
+                                <label for="backpack-gold" class="color-swatch gold"></label>
+                                <span>Gold</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customizable Attachments -->
+                    <div class="customization-section">
+                        <h2>Customize Your Backpack</h2>
+                        <p class="attachments-prompt">Select upgrades:</p>
+
+                        <form class="attachments-form">
+                            <div class="attachment-option">
+                                <input type="checkbox" id="backpack-laptop" name="backpack-laptop">
+                                <label for="backpack-laptop">Laptop Sleeve (up to 17") (+£14.99)</label>
+                            </div>
+                            
+                            <div class="attachment-option">
+                                <input type="checkbox" id="backpack-usb" name="backpack-usb">
+                                <label for="backpack-usb">USB Charging Port (+£12.99)</label>
+                            </div>
+                            
+                            <div class="attachment-option">
+                                <input type="checkbox" id="backpack-raincover" name="backpack-raincover">
+                                <label for="backpack-raincover">Built-in Rain Cover (+£9.99)</label>
+                            </div>
+                            
+                            <div class="attachment-option">
+                                <input type="checkbox" id="backpack-hipbelt" name="backpack-hipbelt">
+                                <label for="backpack-hipbelt">Support Hip Belt (+£15.99)</label>
+                            </div>
+                        </form>
+
+                        <div class="total-price">
+                            <h3>Total: <span id="total-amount">£79.99</span></h3>
+                        </div>
+                        <a href = "checkout_page.html"> 
+                            <button class="btn btn-primary btn-large add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Your consistent footer -->
+    </footer>
+
+    <script>
+        // Price calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            const basePrice = 79.99;
+            const checkboxes = document.querySelectorAll('.attachments-form input[type="checkbox"]');
+            const totalElement = document.getElementById('total-amount');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
+            });
+            
+            function updateTotal() {
+                let total = basePrice;
+                checkboxes.forEach(checkbox => {
+                    if(checkbox.checked) {
+                        const priceText = checkbox.nextElementSibling.textContent.match(/\+(\£\d+\.\d+)/)[1];
+                        const price = parseFloat(priceText.substring(1));
+                        total += price;
+                    }
+                });
+                totalElement.textContent = '£' + total.toFixed(2);
+            }
+
+            // Color switcher
+            const colorRadios = document.querySelectorAll('input[name="backpack-color"]');
+            const mainImage = document.getElementById('backpackImage');
+            
+            colorRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const color = this.value;
+                    mainImage.src = `Images/Back/Backpack-${color}.jpg`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

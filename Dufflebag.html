@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duffle Bag - Sports Bag Co.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="Dufflebag_style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Sports Bag Co." class="logo-img">
+                </a>
+            </div>
+            <div class="main-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="store.html">Store</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Page Content -->
+    <main class="product-page">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product Image -->
+                <div class="product-image">
+                    <img src="Images/Duffle/duffle-bag-white.jpg" alt="Duffle Bag" class="main-image">
+                    <div class="price-tag">£89.99</div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="product-details">
+                    <h1>Premium Duffle Bag</h1>
+                    <p class="product-description">
+                        Our versatile duffle bag with customizable compartments perfect for athletes who need adaptable storage. Made with waterproof, durable materials.
+                    </p>
+
+                    <!-- Customizable Attachments -->
+                    <div class="customization-section">
+                        <h2>Customize Your Bag</h2>
+                        <p>Select the attachments you want:</p>
+
+                        <form class="attachments-form">
+                            <div class="attachment-option">
+                                <input type="checkbox" id="water-holder" name="water-holder">
+                                <label for="water-holder">Water Bottle Holder (+£4.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="shoe-compartment" name="shoe-compartment">
+                                <label for="shoe-compartment">Dedicated Shoe Compartment (+£9.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="towel-compartment" name="towel-compartment">
+                                <label for="towel-compartment">Sweaty Towel/Cloths Compartment (+£7.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="velcro-addon" name="velcro-addon">
+                                <label for="velcro-addon">Velcro Add-on for Equipment (+£12.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="secure-compartment" name="secure-compartment">
+                                <label for="secure-compartment">Secure Compartment for Valuables (+£14.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="dry-pocket" name="dry-pocket">
+                                <label for="dry-pocket">Dry Pocket (+£5.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="padded-straps" name="padded-straps">
+                                <label for="padded-straps">Padded Straps (+£8.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="usb-port" name="usb-port">
+                                <label for="usb-port">USB Port Accessibility (+£11.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="laptop-pocket" name="laptop-pocket">
+                                <label for="laptop-pocket">Laptop Pocket (+£10.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="protein-holder" name="protein-holder">
+                                <label for="protein-holder">Protein Shake Holder (+£6.99)</label>
+                            </div>
+
+                            <div class="attachment-option">
+                                <input type="checkbox" id="backpack-straps" name="backpack-straps">
+                                <label for="backpack-straps">Backpack Conversion Straps (+£15.99)</label>
+                            </div>
+                        </form>
+
+                        <div class="total-price">
+                            <h3>Total: <span id="total-amount">£89.99</span></h3>
+                        </div>
+
+                        <a href = "checkout_page.html"> 
+                            <button class="btn btn-primary btn-large add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Add this right after the product description -->
+        <div class="color-selection">
+            <h3>Choose Color:</h3>
+            <div class="color-options">
+                <div class="color-option">
+                    <input type="radio" id="color-white" name="bag-color" value="white" checked>
+                    <label for="color-white" class="color-swatch white"></label>
+                    <span>White</span>
+                </div>
+                <div class="color-option">
+                    <input type="radio" id="color-black" name="bag-color" value="black">
+                    <label for="color-black" class="color-swatch black"></label>
+                    <span>Black</span>
+                </div>
+                <div class="color-option">
+                    <input type="radio" id="color-gold" name="bag-color" value="gold">
+                    <label for="color-gold" class="color-swatch gold"></label>
+                    <span>Gold</span>
+                </div>
+            </div>
+        </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Your footer content here -->
+    </footer>
+
+    <script>
+        // Price calculation script
+        document.addEventListener('DOMContentLoaded', function() {
+            const basePrice = 89.99;
+            const checkboxes = document.querySelectorAll('.attachments-form input[type="checkbox"]');
+            const totalElement = document.getElementById('total-amount');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
+            });
+            
+            function updateTotal() {
+                let total = basePrice;
+                checkboxes.forEach(checkbox => {
+                    if(checkbox.checked) {
+                        const priceText = checkbox.nextElementSibling.textContent.match(/\+(\£\d+\.\d+)/)[1];
+                        const price = parseFloat(priceText.substring(1));
+                        total += price;
+                    }
+                });
+                totalElement.textContent = '£' + total.toFixed(2);
+            }
+        });
+    </script>
+
+    <script>
+        // Color selection functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorRadios = document.querySelectorAll('input[name="bag-color"]');
+            const mainImage = document.querySelector('.product-image .main-image');
+            
+            colorRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const color = this.value;
+                    mainImage.src = `Images/Duffle/duffle-bag-${color}.jpg`;
+                    
+                    // Optional: Update price if colors have different base prices
+                    // updateBasePriceBasedOnColor(color);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

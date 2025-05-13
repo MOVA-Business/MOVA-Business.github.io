@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Bag - Sports Bag Co.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="CircleBag_style.css">
+</head>
+<body>
+    <!-- Navigation (Same as other pages) -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Sports Bag Co." class="logo-img">
+                </a>
+            </div>
+            <div class="main-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="store.html">Store</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Page Content -->
+    <main class="product-page">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product Image -->
+                <div class="product-image">
+                    <img src="images/Circle/circle-bag-white.jpg" alt="Circle Bag" class="main-image" id="circleBagImage">
+                    <div class="price-tag">£59.99</div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="product-details">
+                    <h1>360° Circle Bag</h1>
+                    <p class="product-description">
+                        Innovative circular design with all-around access. Perfect for quick gear retrieval during games.
+                    </p>
+
+                    <!-- Color Selection -->
+                    <div class="color-selection">
+                        <h3>Choose Color:</h3>
+                        <div class="color-options">
+                            <div class="color-option">
+                                <input type="radio" id="circle-white" name="circle-color" value="white" checked>
+                                <label for="circle-white" class="color-swatch white"></label>
+                                <span>White</span>
+                            </div>
+                            <div class="color-option">
+                                <input type="radio" id="circle-black" name="circle-color" value="black">
+                                <label for="circle-black" class="color-swatch black"></label>
+                                <span>Black</span>
+                            </div>
+                            <div class="color-option">
+                                <input type="radio" id="circle-gold" name="circle-color" value="gold">
+                                <label for="circle-gold" class="color-swatch gold"></label>
+                                <span>Gold</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customizable Attachments -->
+                    <div class="customization-section">
+                        <h2>Customize Your Bag</h2>
+                        <p class="attachments-prompt">Select the attachments you want:</p>
+
+                        <form class="attachments-form">
+                            <div class="attachment-option">
+                                <input type="checkbox" id="circle-water" name="circle-water">
+                                <label for="circle-water">Water Bottle Holder (+£4.99)</label>
+                            </div>
+                            
+                            <div class="attachment-option">
+                                <input type="checkbox" id="circle-secure" name="circle-secure">
+                                <label for="circle-secure">Secure Compartment (+£12.99)</label>
+                            </div>
+                            
+                            <div class="attachment-option">
+                                <input type="checkbox" id="circle-straps" name="circle-straps">
+                                <label for="circle-straps">Padded Shoulder Straps (+£8.99)</label>
+                            </div>
+                            
+                            <div class="attachment-option">
+                                <input type="checkbox" id="circle-velcro" name="circle-velcro">
+                                <label for="circle-velcro">Velcro Equipment Panel (+£9.99)</label>
+                            </div>
+                        </form>
+
+                        <div class="total-price">
+                            <h3>Total: <span id="total-amount">£59.99</span></h3>
+                        </div>
+
+                        <a href = "checkout_page.html"> 
+                            <button href = "checkout_page.html" class="btn btn-primary btn-large add-to-cart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Your footer content -->
+    </footer>
+
+    <script>
+        // Price calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            const basePrice = 59.99;
+            const checkboxes = document.querySelectorAll('.attachments-form input[type="checkbox"]');
+            const totalElement = document.getElementById('total-amount');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
+            });
+            
+            function updateTotal() {
+                let total = basePrice;
+                checkboxes.forEach(checkbox => {
+                    if(checkbox.checked) {
+                        const priceText = checkbox.nextElementSibling.textContent.match(/\+(\£\d+\.\d+)/)[1];
+                        const price = parseFloat(priceText.substring(1));
+                        total += price;
+                    }
+                });
+                totalElement.textContent = '£' + total.toFixed(2);
+            }
+
+            // Color switcher
+            const colorRadios = document.querySelectorAll('input[name="circle-color"]');
+            const mainImage = document.getElementById('circleBagImage');
+            
+            colorRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const color = this.value;
+                    mainImage.src = `Images/Circle/circle-bag-${color}.jpg`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
